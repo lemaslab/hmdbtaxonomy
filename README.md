@@ -3,6 +3,6 @@ hmdbtaxonomy is a package used to parse HMDB .xml files, match metabolite names 
 
 To install the package, type this in R command line:
 install.packages("devtools")
-devtools::install_github("e-elias/hmdbtaxonomy")
+devtools::install_github("lemaslab/hmdbtaxonomy")
 
 Current issue and fix: Package depends on library XML and the current package is not automatically adding the dependency. Simply type library(XML) in R console to fix.
