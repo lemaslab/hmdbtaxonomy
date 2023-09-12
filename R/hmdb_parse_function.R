@@ -171,8 +171,28 @@ hmdb_parse <- function(xmlName)
       else {
         externaldescriptorvector <- NULL
       }
+      print(j)
+      diseaseroot = root[[j]][c("ontology")]
+      diseaseroot = diseaseroot[[1]][[1]]
+      diseaseroot = diseaseroot[c("descendants")][[1]]
+      diseasroot = diseaseroot[[1]]
+      diseaseroot = diseaseroot[c("descendants")][[1]]
+      diseaseroot = diseaseroot[[1]]
+      diseaseroot = diseaseroot[c("descendants")][[1]]
+      diseaseSize = xmlSize(diseaseroot)
+      diseasevector <- vector(mode = 'list', length=size)
+
+      if (diseaseSize > 0) {
+        for (i in 1:diseaseSize) {
+          tmp = diseaseroot[[i]]
+          diseasevector[i] <- xmlToList(tmp[[1]])
+        }
+      }
+      else {
+        diseasevector <- NULL
+      }
     }
-    arr = list(hmdb_id =idvector, names = namevector, description = descriptionvector, kingdom = kingdomvector, super_class = superclassvector, class = classvector, sub_class = subclassvector, direct_parent = directparentvector, alternative_parent = alternativeparentvector, substituents = substituentvector, molecular_framework = molecularframeworkvector)
+    arr = list(hmdb_id =idvector, names = namevector, description = descriptionvector, kingdom = kingdomvector, super_class = superclassvector, class = classvector, sub_class = subclassvector, direct_parent = directparentvector, alternative_parent = alternativeparentvector, substituents = substituentvector, molecular_framework = molecularframeworkvector, diseases = diseasevector)
     hmdb[[j]] = arr
   }
   save(hmdb, file="hmdbtaxonomy.rda")
