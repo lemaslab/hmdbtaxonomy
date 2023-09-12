@@ -12,7 +12,6 @@ hmdb_name_match <- function(sheetName) {
   metabolite_search <- function(input) {
     out <- NULL
     #input = readline(prompt = "Enter metabolite name: ")
-    #print(input)
     size <- xmlSize(hmdb)
     for(i in 1:size) {
       name1 <- hmdb[[i]][c("names")]
